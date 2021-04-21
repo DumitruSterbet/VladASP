@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aeroport</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- <link rel="stylesheet" href="~/css/form.css" />-->
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/about.css" />
+    <link rel="stylesheet" href="~/css/favorite/jumbotron.css" />
+
+    <link rel="stylesheet" href="~/css/about/social.css" />
+
+</head>
+
+
+
+
+    <body class="bg-dark" style="">
+        <header class="bg-dark m-5 mt-2 rounded " style="">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a style="font-size:33px" class="navbar-brand  p-2 mr-5" asp-area="" asp-controller="fly" asp-action="Index">#Bilete <img src="~/css/layout/icons/airplane.png" height="50" width="60" /></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="fly" asp-action="favourite">Bilete top<img src="~/css/layout/icons/love_plane.png" height="50" width="50" /></a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="fly" asp-action="aboutus">Despre noi <img src="~/css/layout/icons/aboutus.gif" height="45" width="50" /></a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="fly" asp-action="myorder">
+                                    Orderele mele
+                                    <img src="~/css/layout/icons/order.png" width="50" height="42" />
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="fly" asp-action="LogOut">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                                        <path d="M7.5 1v7h1V1h-1z" />
+                                        <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="mb-2">
+                @RenderBody()
+            </main>
+        </div>
+        <div class="mt-w"></div>
+
+        <footer class="rounded  border-light pt-4" style="margin:0px;padding:0px;background-color:black">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-lg-2 text-center">
+                        <h4 class="text-white m-2">#FlyOne.MD</h4>
+                        <h6 class="text-light m-2">&copy; 2021 - #FlyOne.MD</h6>
+                    </div>
+                    <div class="col-lg-3  pb-3 text-center">
+                        <h4 class="text-white m-2"> Retele de socializare</h4>
+                        <h6 class="text-secondary" style="font-size:10px">
+                            Urmați-ne pe rețelele de socializare pentru a afla despre cele mai
+                            recente actualizări despre progresul nostru
+                        </h6>
+                        <div class="footer-social-links d-inline-flex">
+                            <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook" style="color:white;"></i></a>
+                            <a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter" style="color:white;"></i></a>
+                            <a href="#" title="Google+" target="_blank"><i class="fa fa-google-plus " style="color:white;"></i></a>
+                            <a href="#" title="LinkedIn+" target="_blank"><i class="fa fa-linkedin" style="color:white;"></i></a>
+                            <a href="#" title="Dribbble" target="_blank"><i class="fa fa-dribbble" style="color:white;"></i></a>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <h4 class="text-white m-2">Informatie</h4>
+                        <h6 class="text-secondary m-2" style="font-size:13px;">FAQ</h6>
+                        <h6 class="text-secondary m-2" style="font-size:13px;">Centrul de ajutor</h6>
+                        <h6 class="text-secondary m-2" style="font-size:13px;">Contact</h6>
+                    </div>
+                    <div class="col-lg-2 ">
+                        <h4 class="text-white m-2">Companie</h4>
+                        <h6 class="text-secondary m-2"style="font-size:13px;">Despre noi</h6>
+                        <h6 class="text-secondary m-2"style="font-size:13px;">  Politica de Confidențialitate  </h6>
+                        <h6 class="text-secondary m-2"style="font-size:13px;">Termeni de utilizare</h6>
+                    </div>
+                    <div class="col-lg-3 ">
+                        <h4 class="text-white m-2">Noi acceptam</h4>
+                        <img src="~/footer/cardIcons/visa.png" height="35" width="35" />
+                        <img src="~/footer/cardIcons/discover.png" height="35" width="35" />
+                        <img src="~/footer/cardIcons/amex-logo.png" height="35" width="35" />
+                        <img src="~/footer/cardIcons/mastercard.png" height="35" width="35" />
+
+                    </div>
+                </div>
+
+                <div class="border-top text-secondary m-2"></div>
+                    <h6 class="text-white " style="font-size:11px;">
+                        * Toate tarifele afișate sunt în USD și includ toate impozitele,
+                        taxele și taxele suplimentare. Toate prețurile sunt de persoană,
+                        în funcție de călătoria în cursul săptămânii în clasa economică (luni - joi)  din Moldova și
+                        depind de clasa de servicii aleasă, orașul de plecare,  compania aeriană
+                        și ruta (cele mai mici tarife transatlantice sunt de obicei de pe coasta de est;
+                        tarifele transpacifice - de pe coasta de vest). Șederea maximă permisă
+                        este de șase luni.  tarifele transpacifice - de pe coasta de vest). Șederea maximă
+                        permisă este de șase luni.   Vă rugăm să apelați linia noastră gratuită pentru cele mai bune
+                        prețuri actuale și detalii suplimentare.
+
+                        Economiile de până la 77% reducere sunt indicate pe tarifele
+                        complete publicate nerestricționate ale marilor companii aeriene și pot
+                        varia în funcție de regulile tarifare  individuale. Unele companii aeriene pot impune
+
+                        taxe suplimentare pentru bagaje. Tarifele sunt supuse disponibilității
+                        locurilor în inventarul de rezervare corespunzător. Locurile sunt limitate
+                        și este posibil să nu fie disponibile pentru toate zborurile și datele. Tarifele sunt
+
+                        nerambursabile, neschimbabile și netransferabile.
+                        Tarifele și regulile lor de guvernare pot fi modificate
+                        fără notificare prealabilă. Se pot aplica alte restricții.
+                        Tarife mai puțin restrictive disponibile la tarife diferite.
+
+
+                    </h6>
+                    <div class="row text-center pb-4 text-white">
+                        <div class="col-lg-2 m-3">
+                            <img src="~/About/CompanyIcon/1.png" />
+                        </div>
+                        <div class="col-lg-2 m-3">
+                            <img src="~/About/CompanyIcon/2.png" />
+                        </div>
+                        <div class="col-lg-2 m-3">
+                            <img src="~/About/CompanyIcon/3.png" />
+                        </div>
+                        <div class="col-lg-2 m-3">
+                            <img src="~/About/CompanyIcon/4.png" />
+                        </div>
+                        <div class="col-lg-2 m-3">
+                            <img src="~/About/CompanyIcon/5.png" />
+                        </div>
+                    </div>
+                </div>
+
+    </footer>
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+
+    </body>
+    </html>
