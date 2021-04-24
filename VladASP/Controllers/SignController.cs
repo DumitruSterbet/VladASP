@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VladASP.Models;
+using VladASP.ViewModels;
 
 namespace VladASP.Controllers
 {
@@ -23,18 +25,18 @@ namespace VladASP.Controllers
 
         [HttpPost]
         public IActionResult Index(Client client)
-        {  if (client != null)
+        {
+            if (ModelState.IsValid)
             {
-                Client person = new Client();
-               
-                person = db.clients.FirstOrDefault(u => u.Login == client.Login);
-                if (person == client)
+                Client user =  db.clients.FirstOrDefault(u => u.Login == client.Login && u.Password == client.Password);
+                if (user != null)
                 {
-                    return RedirectToAction("Index", "Fly");
+                    
+                    return RedirectToAction("favourite", "fly");
                 }
-            }
 
-            return RedirectToAction("Index", "Sign");
+            }
+            return RedirectToAction("Index", "sign");
         }
 
         public IActionResult Register()
