@@ -1,6 +1,7 @@
 ﻿@model List<WithCityname>
 @{
     ViewData["Tittle"] = "Oras favorit";
+    Layout = "~/Views/Fly/Master.cshtml";
 }
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
@@ -40,7 +41,8 @@
 
     </div>
     <div class="col-lg-2 mt-4 text-right">
-        <a class="btn-danger p-2 pb-1 ml-4 mt-3 mb-3 border rounded" asp-action="reg" asp-controller="order" asp-route-id="@el.Id">Cumpara</a>
+        <a class="btn-danger p-2 pb-1 ml-4 mt-3 mb-3 border rounded" asp-action="orderbuy"
+           asp-controller="fly" asp-route-id="@el.Id">Cumpara</a>
     </div>
 
 

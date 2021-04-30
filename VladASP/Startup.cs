@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,11 @@ namespace VladASP
             // добавляем контекст MobileContext в качестве сервиса в приложение
             services.AddDbContext<FlyContext>(options =>
                 options.UseSqlServer(connection));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options => //CookieAuthenticationOptions
+              {
+                  options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/sign/Index");
+              });
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -50,14 +56,15 @@ namespace VladASP
            
 
             app.UseRouting();
-
+            app.UseAuthentication();    // аутентификация
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=fly}/{action=aboutus}/{id?}");
+                    pattern: "{controller=sign}/{action=index}/{id?}");
             });
         }
     }
