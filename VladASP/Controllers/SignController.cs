@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using VladASP.Models;
+using VladASP.Validation;
 using VladASP.ViewModels;
 
 namespace VladASP.Controllers
@@ -38,19 +39,33 @@ namespace VladASP.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> IndexAsync(Client client)
+        public async Task<IActionResult> Index(Client client)
         {
-            if (ModelState.IsValid)
+            rightClient(client);
+            if (!nullErr(client))
             {
-                Client user =  db.clients.FirstOrDefault(u => u.Login == client.Login && u.Password == client.Password);
-                if (user != null)
-                {
-                    await Authenticate(client.Login);
-                    return RedirectToAction("favourite", "fly", new { @id = user.Id });
-                }
+                if (!lenghtErr(client))
 
+                {
+                    Client user = db.clients.FirstOrDefault(u => u.Login == client.Login && u.Password == client.Password);
+
+                    if (user != null)
+                    {
+
+                        await Authenticate(client.Login);
+                        return RedirectToAction("favourite", "fly", new { @id = user.Id });
+                    }
+                    ViewBag.ErrExist = "Asa utilizator nu exista";
+
+                }
             }
-            return RedirectToAction("Index", "sign");
+            return View();
+        }
+        public void rightClient(Client client)
+        {
+            client.Name = "1234";
+            client.Mobile = 1234;
+            client.Email = "1234";
         }
 
         public IActionResult Register()
@@ -61,20 +76,66 @@ namespace VladASP.Controllers
         [HttpPost]
         public IActionResult Register(Client client)
         {
-            if (client != null)
-            {
-                Client person = new Client();
-                person = db.clients.FirstOrDefault(u => u.Login == client.Login && u.Password == client.Password);
-                if (person!=client)
+            if (!nullErr(client)) { 
+                if (!lenghtErr(client))
                 {
-                    db.Add(client);
-                    db.SaveChanges();
-                }
-            }
+                    {
+                        Client person = new Client();
+                        person = db.clients.FirstOrDefault(u => u.Login == client.Login && u.Password == client.Password);
+                        if (person == null)
+                        {
+                            {
+                                db.Add(client);
+                                db.SaveChanges();
+                                return RedirectToAction("Index", "Sign");
+                            }
+                        }
+                        ViewBag.ErrSame = "Introdu alta combinatie login-parola";
+                    }
 
-            return RedirectToAction("Index", "Sign");
+
+                } }
+            return View();
         }
 
+        public bool nullErr(Client client)
+        {
+            NullErr nullErr = new NullErr();
+            string k = "";
+            k = nullErr.autentificate(client);
+            if (k.Contains("1"))
+                ViewBag.ErrName = nullErr.errMess;
+            if (k.Contains("2"))
+                ViewBag.ErrEmail = nullErr.errMess;
+            if (k.Contains("3"))
+                ViewBag.ErrMobile = nullErr.errMess;
+            if (k.Contains("4"))
+                ViewBag.ErrLogin = nullErr.errMess;
+            if (k.Contains("5"))
+                ViewBag.ErrPassword = nullErr.errMess;
+            if (k=="")
+                return false;
+            return true;
+        }
+        public bool lenghtErr(Client client)
+        {
+            LenghtErr nullErr = new LenghtErr();
+            string k = "";
+            k = nullErr.autentificate(client);
+            if (k.Contains("1"))
+                ViewBag.ErrName = nullErr.errMess;
+            if (k.Contains("2"))
+                ViewBag.ErrEmail = nullErr.errMess;
+            if (k.Contains("3"))
+                ViewBag.ErrMobile = nullErr.errMess;
+            if (k.Contains("4"))
+                ViewBag.ErrLogin = nullErr.errMess;
+            if (k.Contains("5"))
+                ViewBag.ErrPassword = nullErr.errMess;
+            if (k == "")
+                return false;
+            return true;
+        }
 
     }
 }
